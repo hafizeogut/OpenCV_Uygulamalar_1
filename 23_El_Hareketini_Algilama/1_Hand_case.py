@@ -83,48 +83,49 @@ while True:
                 
             #star end noktalarını kullanarak bir çizgi çiziliyor
             cv2.line(roi,start,end,[255,0,0],2)
-            l+=1
-            
-            font=cv2.FONT_HERSHEY_SIMPLEX
-            if l==1:
-                if area_cnt<2000:
-                    cv2.putText(frame,"Put your in the box:",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                    
-                else:  
-                    #elin olmadığı alanın yüzdesi
-                    if area_ratio<12:
-                        cv2.putText(frame,"0",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                    elif area_ratio <17.5:
-                        cv2.putText(frame,"Bol şans",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-
-                    else:
-                        cv2.putText(frame,"1",font,2,(0,0,255),3,cv2.LINE_AA)
-            
-            elif l==2:
-                cv2.putText(frame,"2",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                
-            elif l==3:
-                #ratio area: orean alanı
-                if area_ratio<27:
-                    cv2.putText(frame,"2",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                
-                else:
-                    cv2.putText(frame,"OK",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                    
-            elif l==4:
-                cv2.putText(frame,"4",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                
-            elif l==5:
-                cv2.putText(frame,"5",(0,50),50,(0,0,255,3,cv2.LINE_AA))
-                
-            elif l==6:
-                cv2.putText(frame,"Reposition",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            #shif +tab
+        l+=1
         
-            else: 
-                cv2.putText(frame,"4",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+        font=cv2.FONT_HERSHEY_SIMPLEX
+        if l==1:
+            if area_cnt<2000:
+                cv2.putText(frame,"Put your in the box:",(0,50),50,(0,0,255,3,cv2.LINE_AA))
                 
-            cv2.imshow("mask",mask)
-            cv2.imshow("frame",frame)
+            else:  
+                #elin olmadığı alanın yüzdesi
+                if area_ratio<12:
+                    cv2.putText(frame,"0",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+                elif area_ratio <17.5:
+                    cv2.putText(frame,"Bol şans",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+
+                else:
+                    cv2.putText(frame,"1",font,2,(0,0,255),3,cv2.LINE_AA)
+        
+        elif l==2:
+            cv2.putText(frame,"2",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            
+        elif l==3:
+            #ratio area: orean alanı
+            if area_ratio<27:
+                cv2.putText(frame,"2",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            
+            else:
+                cv2.putText(frame,"OK",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+                
+        elif l==4:
+            cv2.putText(frame,"4",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            
+        elif l==5:
+            cv2.putText(frame,"5",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            
+        elif l==6:
+            cv2.putText(frame,"Reposition",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+    
+        else: 
+            cv2.putText(frame,"4",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            
+        cv2.imshow("mask",mask)
+        cv2.imshow("frame",frame)
 
     except:
         pass
