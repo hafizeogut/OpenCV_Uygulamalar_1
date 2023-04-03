@@ -31,7 +31,7 @@ while True:
         mask=cv2.GaussianBlur(mask,(5,5),10)
         
         #Konturlar bulunuyor
-        _,contours,_=cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
+        contours,_=cv2.findContours(mask,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
         
         #Konturların max alanı belirleniyor
         cnt=max(contours,key=lambda x:cv2.contourArea(x))
@@ -45,7 +45,7 @@ while True:
         
         area_hull=cv2.contourArea(hull)
         area_cnt=cv2.contourArea(cnt)
-        area_ratio=((area_hull-area_cnt)/area_cnt*100)
+        area_ratio=((area_hull-area_cnt)/area_cnt)*100
         
         #Dış Bükey kusurlar tespit ediliyor
         
@@ -71,9 +71,9 @@ while True:
             
             #oluşan üçgenin alanı bulunuyor.
             s=(a+b+c)/2
-            area=math.sqrt(s*(s-a)*(s-b)*(s-c))
+            ar=math.sqrt(s*(s-a)*(s-b)*(s-c))
             #Noktalar dışbükey noktalar arası mesafe tespit ediliyor.
-            d=2*area/a
+            d=(2*ar)/a
             
             #cos kuralu= iki kenar arası açı
             angle=math.acos((b**2+c**2-a**2)/(2*b*c))*57
@@ -107,7 +107,7 @@ while True:
         elif l==3:
             #ratio area: orean alanı
             if area_ratio<27:
-                cv2.putText(frame,"2",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+                cv2.putText(frame,"3",(0,50),50,(0,0,255,3,cv2.LINE_AA))
             
             else:
                 cv2.putText(frame,"OK",(0,50),50,(0,0,255,3,cv2.LINE_AA))
@@ -122,7 +122,7 @@ while True:
             cv2.putText(frame,"Reposition",(0,50),50,(0,0,255,3,cv2.LINE_AA))
     
         else: 
-            cv2.putText(frame,"4",(0,50),50,(0,0,255,3,cv2.LINE_AA))
+            cv2.putText(frame,"Reposition",(0,50),50,(0,0,255,3,cv2.LINE_AA))
             
         cv2.imshow("mask",mask)
         cv2.imshow("frame",frame)
